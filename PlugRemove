@@ -1,0 +1,30 @@
+var counter = 0
+API.on(API.CHAT, function(data) { 
+    if (++counter == 10) {
+        API.sendChat('/clear')
+    }
+});
+
+ initEnvironment = function() {
+    console.info();
+    avatarTick = function(a) {}
+    $("#audience").hide();
+    $("canvas").remove();
+    $("#audience-canvas").remove();
+    $("#booth-canvas").remove();
+    $("#dj-canvas").remove();
+    document.getElementById("button-sound").click();
+    API.sendChat('/stream off')
+    API.setVolume(0)
+  };
+
+ initialize = function() {
+    initEnvironment();
+    return console.info = function(data) {
+        console.log(data);
+        return setTimeout((function() {
+            return location.reload(true);
+        }), 1000);
+  };
+};
+initialize()
